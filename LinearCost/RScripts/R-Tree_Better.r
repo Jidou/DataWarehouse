@@ -15,11 +15,11 @@ drawSingleRectangle <- function(df, rectangleName) {
 }
 
 
-drawRectangle <- function(df, rectangleNames, newRectangleName) {
+drawRectangle <- function(df, rectangleNames, newRectangleName, offsetX, offsetY) {
   Rectans <- subset(df, Rectangle %in% rectangleNames)
   rect(min(Rectans$XCoord, na.rm = TRUE), min(Rectans$YCoord, na.rm = TRUE), max(Rectans$XCoord, na.rm = TRUE), max(Rectans$YCoord, na.rm = TRUE), border = "red", density = 10)
   center <- c(mean(c(min(Rectans$XCoord, na.rm = TRUE), max(Rectans$XCoord, na.rm = TRUE))), mean(c(min(Rectans$YCoord, na.rm = TRUE), max(Rectans$YCoord, na.rm = TRUE))))
-  text(center[1], center[2]-2, labels = newRectangleName)
+  text(center[1]-offsetX, center[2]-offsetY, labels = newRectangleName)
 }
 
 
@@ -62,17 +62,17 @@ df = data.frame(Rectangle, Point, XCoord, YCoord)
 ## set up the plot region:
 
 startPlot()
-drawRectangle(df, "R2", "SR1")
-drawRectangle(df, "R4", "SR2")
+drawRectangle(df, "R2", "SR1", 0, 1)
+drawRectangle(df, "R4", "SR2", 0, 1)
 
 startPlot()
-drawRectangle(df, "R2 R1", "SR1")
-drawRectangle(df, "R4", "SR2")
+drawRectangle(df, "R2 R1", "SR1", 0, 1)
+drawRectangle(df, "R4", "SR2", 0, 1)
 
 startPlot()
-drawRectangle(df, "R2 R1 R3", "SR1")
-drawRectangle(df, "R4", "SR2")
+drawRectangle(df, "R2 R1 R3", "SR1", 0, 1)
+drawRectangle(df, "R4", "SR2", 0, 1)
 
 startPlot()
-drawRectangle(df, "R2 R1 R3", "SR1")
-drawRectangle(df, "R4 R5", "SR2")
+drawRectangle(df, "R2 R1 R3", "SR1", 0, 1)
+drawRectangle(df, "R4 R5", "SR2", 0, 0)
