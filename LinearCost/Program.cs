@@ -219,7 +219,7 @@ namespace LinearCost {
                     absoluteMinX = minX[i];
                 }
 
-                if (absoluteMaxX >= maxX[i]) {
+                if (absoluteMaxX <= maxX[i]) {
                     absoluteMaxX = maxX[i];
                 }
 
@@ -227,7 +227,7 @@ namespace LinearCost {
                     absoluteMinY = minY[i];
                 }
 
-                if (absoluteMaxY >= maxY[i]) {
+                if (absoluteMaxY <= maxY[i]) {
                     absoluteMaxY = maxY[i];
                 }
             }
@@ -238,14 +238,14 @@ namespace LinearCost {
             var diffX = maxMinX - minMaxX;
             var diffY = maxMinY - minMaxY;
 
-            var xNorm = diffX / (double) (xDimWith);
-            var yNorm = diffY / (double) (yDimWith);
+            var xNorm = (double) diffX / (double) (xDimWith);
+            var yNorm = (double) diffY / (double) (yDimWith);
 
             Console.WriteLine($"Dimension | min(max(.)) | max(min(.)) | Diff | Norm |");
             Console.WriteLine(
-                $" x | {minMaxX}({minMaxXRect.Name}) | {maxMinX}({maxMinXRect.Name}) | {diffX} | {xNorm} |");
+                $" x | {minMaxX}({minMaxXRect.Name}) | {maxMinX}({maxMinXRect.Name}) | {diffX} | {xNorm:F4} |");
             Console.WriteLine(
-                $" y | {minMaxY}({minMaxYRect.Name}) | {maxMinY}({maxMinYRect.Name}) | {diffY} | {yNorm} |");
+                $" y | {minMaxY}({minMaxYRect.Name}) | {maxMinY}({maxMinYRect.Name}) | {diffY} | {yNorm:F4} |");
 
             if (xNorm >= yNorm) {
                 return new Tuple<Rectangle, Rectangle>(minMaxXRect, maxMinXRect);
